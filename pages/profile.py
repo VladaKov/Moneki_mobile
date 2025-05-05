@@ -1,11 +1,12 @@
 from flet import *
+from UI.bottom_navigation import build_bottom_navigation
 
 class Profile:
     def __init__(self, page: Page):
         self.page = page
-        self.view = self.Profile_build_ui()
+        self.view = self.Profile_build_ui(page)
 
-    def Profile_build_ui(self):
+    def Profile_build_ui(self, page: Page):
         profile_container = Container(
             width = 430,
             height = 932,
@@ -17,64 +18,15 @@ class Profile:
                 end = alignment.bottom_center
             ),
             content = Column([
-                self.build_stack(),
+                self.build_stack(page),
             ]),
         )
         return profile_container
 
-    def build_stack(self):
+    def build_stack(self, page: Page):
         stack = Stack(
             controls = [
-                self.build_bottom_navigation(),
+                build_bottom_navigation(page),
             ]
         )
         return stack
-
-    def build_bottom_navigation(self):
-        return Container(
-            width = 430,
-            height = 80,
-            gradient = LinearGradient(
-                colors = ['#220044', '#330066'],
-                stops = [0.0, 1],
-                begin = alignment.top_center,
-                end = alignment.bottom_center
-            ),
-            margin = margin.only(left = 0, top = 848),
-            content = Container(
-                content = Row(
-                    controls = [
-                        IconButton(
-                            icon = Icons.HOME_FILLED,
-                            icon_color = '#FFFFFF',
-                            icon_size = 40,
-                            highlight_color = '#4A17BA',
-                            on_click = lambda e: e.page.go("/home")
-                        ),
-                        IconButton(
-                            icon = Icons.PERSON,
-                            icon_color = '#00F8D7',
-                            icon_size = 40,
-                            highlight_color = '#4A17BA',
-                            on_click = lambda e: e.page.go("/profile")
-                        ),
-                        IconButton(
-                            icon = Icons.AUTO_GRAPH_ROUNDED,
-                            icon_color = '#FFFFFF',
-                            icon_size = 40,
-                            highlight_color = '#4A17BA',
-                            on_click = lambda e: e.page.go("/analytics"),
-                        ),
-                        IconButton(
-                            icon = Icons.ADD_TO_PHOTOS_ROUNDED,
-                            icon_color = '#FFFFFF',
-                            icon_size = 35,
-                            highlight_color = '#4A17BA',
-                            on_click = lambda e: e.page.go("/bank_cards"),
-                        ),
-                    ],
-                    alignment = MainAxisAlignment.CENTER,
-                    spacing = 50
-                ),
-            ),
-        )
