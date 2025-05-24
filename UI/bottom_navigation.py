@@ -40,7 +40,7 @@ def icon_home(page: Page):
 def icon_profile(page: Page):
     return IconButton(
         icon = Icons.PERSON,
-        icon_color = '#00F8D7' if page.route == "/profile" else '#FFFFFF',
+        icon_color = '#00F8D7' if page.route in ["/profile_changes" ,"/profile"] else '#FFFFFF',
         icon_size = 40,
         highlight_color = '#4A17BA',
         on_click = lambda e: e.page.go("/profile")
@@ -57,7 +57,7 @@ def icon_analytics(page: Page):
 
 def icon_bank_cards(page: Page):
     return IconButton(
-        icon = Icons.ADD_TO_PHOTOS_ROUNDED,
+        icon = Icons.ADD_CARD_OUTLINED,
         icon_color = '#00F8D7' if page.route == "/bank_cards" else '#FFFFFF',
         icon_size = 35,
         highlight_color = '#4A17BA',

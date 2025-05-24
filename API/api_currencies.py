@@ -2,7 +2,7 @@ import requests
 import json
 
 url = 'https://v6.exchangerate-api.com'
-apiKey = 'd3f1623a3008b0da978e40d9'
+apiKey = '2b3608875101349f3b6a5da3'
 curList = {'USD', 'EUR', 'GBP', 'JPY', 'CNY', 'CHF'}
 
 def get_endpoint(currency):

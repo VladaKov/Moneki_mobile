@@ -1,4 +1,5 @@
 from flet import *
+import math
 from UI.container_currencies import build_container_currencies
 from UI.bottom_navigation import build_bottom_navigation
 
@@ -56,11 +57,11 @@ class Home:
             width = 400,
             height = 260,
             border_radius = 30,
-            gradient = LinearGradient(
-                colors = ['#4A17BA', '#800FDC', '#B508FF'],
-                stops = [0.25, 0.77, 1],
-                begin = alignment.top_center,
-                end = alignment.bottom_center
+            gradient = SweepGradient(
+                center = Offset(0.0, 0.0),
+                start_angle = 1,
+                end_angle = math.pi * 2,
+                colors = ['#9D9FE7', '#71DEC5', '#745BD0', '#4A17BA', '#4A17BA', '#745BD0', '#9D9FE7', ],
             ),
             margin = margin.only(left = 15, top = 180),
             content = Column([
@@ -79,8 +80,8 @@ class Home:
         return Container(
             Text(
                 value = "Добрый",
-                size = 38,
-                weight = FontWeight.W_800,
+                size = 40,
+                weight = FontWeight.W_600,
                 color = '#FFFFFF',
                 font_family = "Arial",
             ),
@@ -91,8 +92,8 @@ class Home:
         return Container(
             Text(
                 value = "день !",
-                size = 38,
-                weight = FontWeight.W_800,
+                size = 40,
+                weight = FontWeight.W_600,
                 color = '#FFFFFF',
                 font_family = "Arial",
             ),
@@ -103,8 +104,8 @@ class Home:
         return Container(
             content = Row(
                 controls = [
-                    self.icon_analytics(),
                     self.text_analytics(),
+                    self.icon_analytics_arrow(),
                 ],
                 alignment = MainAxisAlignment.CENTER,
                 spacing = 10
@@ -126,10 +127,10 @@ class Home:
             height = 60,
             border_radius = 20,
             margin = margin.only(left = 25, top = 180),
-            on_click = lambda e: e.page.go("/profile"),
+            on_click = lambda e: e.page.go("/analytics"),
         )
 
-    def icon_analytics(self):
+    def text_analytics(self):
         return Text(
             value = "Смотреть аналитику",
             size = 25,
@@ -138,7 +139,7 @@ class Home:
             font_family = "Arial",
         )
 
-    def text_analytics(self):
+    def icon_analytics_arrow(self):
         return Icon(
             name = Icons.ARROW_FORWARD_ROUNDED,
             color = '#FFFFFF',
@@ -197,7 +198,7 @@ class Home:
                         height = 80,
                         border_radius = 20,
                         gradient = LinearGradient(
-                            colors = ['#480090', '#330066'],
+                            colors = ['#4A17BA', '#330066'],
                             stops = [0.0, 1],
                             begin = alignment.top_left,
                             end = alignment.bottom_right

@@ -3,6 +3,7 @@ from pages.home import Home
 from pages.profile import Profile
 from pages.analytics import Analytics
 from pages.bank_cards import Bank_cards
+from pages.profile_changes import Profile_changes
 
 def App(page: Page):
     def route_change(e):
@@ -30,6 +31,12 @@ def App(page: Page):
             bank_cards = Bank_cards(page)
             page.views.append(
                 View("/bank_cards", [bank_cards.view], padding = 0)
+            )
+
+        elif page.route == "/profile_changes":
+            profile_changes = Profile_changes(page)
+            page.views.append(
+                View("/profile_changes", [profile_changes.view], padding = 0)
             )
 
         page.update()
