@@ -4,12 +4,28 @@ from pages.profile import Profile
 from pages.analytics import Analytics
 from pages.bank_cards import Bank_cards
 from pages.profile_changes import Profile_changes
+from pages.registration import Registration
+from pages.entrance import Entrance
+
 
 def App(page: Page):
+    s = True
     def route_change(e):
         page.views.clear()
 
-        if page.route == "/" or page.route == "/home":
+        if page.route == "/":
+            registration = Registration(page)
+            page.views.append(
+                View("/", [registration.view], padding = 0)
+            )
+
+        elif page.route == "/entrance":
+            entrance = Entrance(page)
+            page.views.append(
+                View("/entrance", [entrance.view], padding = 0)
+            )
+
+        elif page.route == "/home":
             home = Home(page)
             page.views.append(
                 View("/home", [home.view], padding = 0)
@@ -42,4 +58,7 @@ def App(page: Page):
         page.update()
 
     page.on_route_change = route_change
-    page.go("/home")
+    if s == True:
+        page.go("/")
+    else:
+        page.go("/entrance")

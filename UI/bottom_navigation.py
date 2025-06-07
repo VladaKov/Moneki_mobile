@@ -11,7 +11,7 @@ def build_bottom_navigation(page: Page):
             begin = alignment.top_center,
             end = alignment.bottom_center
         ),
-        margin = margin.only(left = 0, top = 848),
+        margin = margin.only(left = 0, top = 852),
     )
 
 def container_bottom_navigation(page: Page):

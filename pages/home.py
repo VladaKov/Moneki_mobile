@@ -1,6 +1,6 @@
 from flet import *
 import math
-from UI.container_currencies import build_container_currencies
+# from UI.container_currencies import build_container_currencies
 from UI.bottom_navigation import build_bottom_navigation
 
 class Home:
@@ -29,12 +29,11 @@ class Home:
         stack = Stack(
             controls = [
                 self.build_text_mokeki(),
+                self.build_stack_of_coins_image(),
                 self.build_button_analytics(),
                 self.build_cat_image(),
                 self.build_text_vyluty(),
-                self.build_row_vyluty(),
-                self.build_text_expenses(),
-                self.build_row_expenses(),
+                # self.build_row_vyluty(),
                 build_bottom_navigation(page),
             ]
         )
@@ -61,7 +60,7 @@ class Home:
                 center = Offset(0.0, 0.0),
                 start_angle = 1,
                 end_angle = math.pi * 2,
-                colors = ['#9D9FE7', '#71DEC5', '#745BD0', '#4A17BA', '#4A17BA', '#745BD0', '#9D9FE7', ],
+                colors = ['#9D9FE7', '#71DEC5', '#745BD0', '#4A17BA', '#4A17BA', '#745BD0', '#9D9FE7'],
             ),
             margin = margin.only(left = 15, top = 180),
             content = Column([
@@ -167,43 +166,18 @@ class Home:
             margin = margin.only(left = 30, top = 470),
         )
 
-    def build_row_vyluty(self):
-        return Container(
-            build_container_currencies(),
-            margin = margin.only(left = 15, top = 510),
-        )
+    # def build_row_vyluty(self):
+    #     return Container(
+    #         build_container_currencies(),
+    #         margin = margin.only(left = 15, top = 510),
+    #     )
 
-    def build_text_expenses(self):
+    def build_stack_of_coins_image(self):
         return Container(
-            Text(
-                value = "Последние траты",
-                size = 20,
-                color = '#9D9FE7',
-                font_family = "Arial",
+            Image(
+                src = 'Images\stack_of_coins.png',
+                width = 513,
+                height = 513,
             ),
-            margin = margin.only(left = 30, top = 650),
-        )
-
-    def build_row_expenses(self):
-        return Container(
-            height = 160,
-            width = 400,
-            margin = margin.only(left = 15, top = 690),
-            content = ListView(
-                on_scroll = ScrollMode.AUTO,
-                spacing = 10,
-                controls = [
-                    *[Container(
-                        width = 400,
-                        height = 80,
-                        border_radius = 20,
-                        gradient = LinearGradient(
-                            colors = ['#4A17BA', '#330066'],
-                            stops = [0.0, 1],
-                            begin = alignment.top_left,
-                            end = alignment.bottom_right
-                        ),
-                    )for _ in range(5)],
-                ]
-            ),
+            margin = margin.only(left = -15, top = 480),
         )

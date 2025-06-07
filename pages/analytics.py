@@ -1,5 +1,6 @@
 from flet import *
 from UI.bottom_navigation import build_bottom_navigation
+from UI.added_cards import build_added_cards
 
 class Analytics:
     def __init__(self, page: Page):
@@ -26,8 +27,15 @@ class Analytics:
     def build_stack(self, page: Page):
         stack = Stack(
             controls = [
+                self.build_row_added_cards(),
                 build_bottom_navigation(page),
             ]
         )
         return stack
+
+    def build_row_added_cards(self):
+        return Container(
+            build_added_cards(),
+            margin = margin.only(left = 20, top = 100),
+        )
 

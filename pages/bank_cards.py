@@ -1,5 +1,6 @@
 from flet import *
 from UI.bottom_navigation import build_bottom_navigation
+from UI.button_name_bank import bild_button_scrol
 
 class Bank_cards:
     def __init__(self, page: Page):
@@ -26,7 +27,14 @@ class Bank_cards:
     def build_stack(self, page: Page):
         stack = Stack(
             controls = [
+                self.build_scrol_added_cards(),
                 build_bottom_navigation(page),
             ]
         )
         return stack
+
+    def build_scrol_added_cards(self):
+        return Container(
+            bild_button_scrol(),
+            margin = margin.only(left = 20, top = 75)
+        )

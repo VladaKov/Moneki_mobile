@@ -32,6 +32,7 @@ class Profile:
                 self.build_text_active_cards(),
                 self.build_row_added_cards(),
                 self.build_button_change_profile(),
+                self.build_button_delete_profile(),
                 build_bottom_navigation(page),
             ]
         )
@@ -69,6 +70,18 @@ class Profile:
                 font_family = "Arial",
             ),
             margin = margin.only(left = 20, top = 90),
+        )
+
+    def image_avatar(self):
+        return Container(
+            width = 100,
+            height = 100,
+            margin = margin.only(left = 20, top = 20),
+            content = Image(
+                src = 'images/avatar.png',
+                width = 100,
+                height = 100,
+            ),
         )
 
     def text_full_name(self):
@@ -122,13 +135,13 @@ class Profile:
                 color = '#9D9FE7',
                 font_family = "Arial",
             ),
-            margin = margin.only(left = 25, top = 455),
+            margin = margin.only(left = 25, top = 448),
         )
 
     def build_row_added_cards(self):
         return Container(
             build_added_cards(),
-            margin = margin.only(left = 20, top = 510),
+            margin = margin.only(left = 20, top = 490),
         )
 
     def build_button_change_profile(self):
@@ -156,9 +169,9 @@ class Profile:
             ),
             ink = True,
             width = 412,
-            height = 80,
+            height = 65,
             border_radius = 20,
-            margin = margin.only(left = 10, top = 730),
+            margin = margin.only(left = 10, top = 700),
             on_click = lambda e: e.page.go("/profile_changes"),
         )
 
@@ -185,3 +198,39 @@ class Profile:
             size = 30,
         )
 
+    def build_button_delete_profile(self):
+        return Container(
+            content = Row(
+                controls = [
+                    self.text_delete_profile(),
+                ],
+                alignment = MainAxisAlignment.CENTER,
+            ),
+            gradient = LinearGradient(
+                colors = ['#71DEC5', '#4A17BA'],
+                stops = [0.0, 1],
+                begin = alignment.top_left,
+                end = alignment.bottom_right
+            ),
+            shadow = BoxShadow(
+                spread_radius = 1,
+                blur_radius = 5,
+                color = '#220044',
+                offset = Offset(0, 4),
+            ),
+            ink = True,
+            width = 305,
+            height = 40,
+            border_radius = 20,
+            margin = margin.only(left = 63, top = 790),
+            on_click = lambda e: e.page,
+        )
+
+    def text_delete_profile(self):
+        return Text(
+            value = "Удалить профиль",
+            size = 20,
+            weight = FontWeight.W_500,
+            color = '#05041B',
+            font_family = "Arial",
+        )
